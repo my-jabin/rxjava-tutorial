@@ -1,27 +1,19 @@
-import io.reactivex.Observable;
+package rxjava.operator;
+
+import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class FilterOperations {
+import io.reactivex.Observable;
 
-    public static void main(String[] args) {
+public class Filtering {
 
-        //  filter();
-        //distinct();;
-        //distinctUntilChanged();
-        // ignoreElements();
-        //take();
-        //skip();
+    // examples on https://github.com/ReactiveX/RxJava/wiki/Filtering-Observables
 
-        //takeWhile();
-//        skipWhile();
-        takeUntil();
-//        skipUntil();
-    }
-
-    public static void skipUntil() {
-        Observable<Long> source = Observable.intervalRange(1,10,0,5,TimeUnit.SECONDS);
-        Observable<Long> second = Observable.timer(350,TimeUnit.MILLISECONDS);
+    @Test
+    public void skipUntil() {
+        Observable<Long> source = Observable.intervalRange(1, 10, 0, 5, TimeUnit.SECONDS);
+        Observable<Long> second = Observable.timer(350, TimeUnit.MILLISECONDS);
 
         source
                 .subscribe(
@@ -31,8 +23,8 @@ public class FilterOperations {
                 );
     }
 
-
-    public static void takeUntil() {
+    @Test
+    public void takeUntil() {
         Observable<Integer> observable = Observable.range(0, 5);
         observable.takeUntil(v -> v == 2)
                 .subscribe(
@@ -42,8 +34,8 @@ public class FilterOperations {
                 );
     }
 
-
-    public static void filter() {
+    @Test
+    public void filter() {
         Observable<Integer> values = Observable.range(0, 10);
         values.filter(v -> v % 2 == 0)
                 .subscribe(
@@ -53,7 +45,8 @@ public class FilterOperations {
                 );
     }
 
-    public static void distinct() {
+    @Test
+    public void distinct() {
         Integer[] array = {1, 1, 2, 2, 3};
         Observable<Integer> values = Observable.fromArray(array);
         values.distinct()
@@ -64,7 +57,8 @@ public class FilterOperations {
                 );
     }
 
-    public static void distinctUntilChanged() {
+    @Test
+    public void distinctUntilChanged() {
         Integer[] array = {1, 1, 2, 3, 2};
         Observable<Integer> values = Observable.fromArray(array);
         values.distinctUntilChanged()
@@ -75,7 +69,8 @@ public class FilterOperations {
                 );
     }
 
-    public static void ignoreElements() {
+    @Test
+    public void ignoreElements() {
         Observable<Integer> values = Observable.range(0, 5);
         values.ignoreElements().subscribe(
                 () -> System.out.println("Completed"),
@@ -84,7 +79,8 @@ public class FilterOperations {
 
     }
 
-    public static void take() {
+    @Test
+    public void take() {
         Observable<Integer> values = Observable.create(o -> {
             o.onNext(1);
             o.onNext(1);
@@ -99,7 +95,8 @@ public class FilterOperations {
 
     }
 
-    public static void skip() {
+    @Test
+    public void skip() {
         Observable<Integer> values = Observable.range(0, 5);
         values.skip(2)
                 .subscribe(
@@ -109,7 +106,8 @@ public class FilterOperations {
                 );
     }
 
-    public static void takeWhile() {
+    @Test
+    public void takeWhile() {
         Observable<Integer> values = Observable.range(0, 5);
         values.takeWhile(v -> v < 2)
                 .subscribe(
@@ -119,7 +117,8 @@ public class FilterOperations {
                 );
     }
 
-    public static void skipWhile() {
+    @Test
+    public void skipWhile() {
         Observable<Integer> values = Observable.range(0, 5);
         values.skipWhile(v -> v < 2)
                 .subscribe(
