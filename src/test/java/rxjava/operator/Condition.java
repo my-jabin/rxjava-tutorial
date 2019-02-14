@@ -1,6 +1,6 @@
 package rxjava.operator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,9 +8,12 @@ import io.reactivex.Observable;
 
 public class Condition {
 
+    // https://github.com/ReactiveX/RxJava/wiki/Conditional-and-Boolean-Operators
+
     @Test
     public void amb() {
-//        given two or more source Observables, emits all of the items from the first of these Observables to emit an item
+//        given two or more source Observables, emits all of the items from only the first of these Observables to emit an item.
+        // there are 3 observable in this example. the init is the first one to emit items.
         Observable interval = Observable.interval(200, TimeUnit.MILLISECONDS);
         Observable<Integer> ints = Observable.range(1, 3);
         Observable intervalDelay = Observable.interval(1000, 1, TimeUnit.MILLISECONDS);
@@ -19,7 +22,6 @@ public class Condition {
                         v -> System.out.println("Received:" + v),
                         e -> System.out.println("Errir" + e),
                         () -> System.out.println("Completed"));
-
     }
 
     @Test

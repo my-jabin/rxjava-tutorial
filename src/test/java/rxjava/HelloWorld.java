@@ -12,7 +12,9 @@ public class HelloWorld {
 
         Observable<String> helloWorld = Observable.just("Hello World!"); // create a Observable
         helloWorld.subscribe(
-                str -> System.out.println(str)  // Subscriber consuming items.
+                str -> System.out.println(str),  // Subscriber consuming items.
+                e -> System.out.println(e),
+                () -> System.out.println("completed")
         );
     }
 }

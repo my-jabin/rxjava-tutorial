@@ -1,6 +1,6 @@
 package rxjava.operator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +55,7 @@ public class Transformation {
 
     // what is the difference between flatMap, concatMap and switchMap ?
     @Test
-    public void differenceFltmap() {
+    public void differenceFlatmap() {
         // flatMap merges the emissions of the resulting Observables
         // flatMap does not care about the order of the items
         int delays[] = {2000, 1000, 1};
@@ -78,16 +78,17 @@ public class Transformation {
     }
 
     @Test
-    public void differenceSwitchMap() {
+    public void differenceSwitchMap() throws InterruptedException {
         // switchMap emit only the most recently operator item
         int delays[] = {2000, 1000, 1};
         Observable<Integer> observable = Observable.range(0, 3);
-        observable.switchMap(i -> Observable.just(100 + i).delay(delays[i], TimeUnit.MICROSECONDS))
-                .blockingSubscribe(
+        observable.switchMap(i -> Observable.just(100 + i).delay(delays[i], TimeUnit.MILLISECONDS))
+                .subscribe(
                         result -> System.out.println(result),
                         e -> System.out.println("Error: " + e),
                         () -> System.out.println("Completed")
                 );
+        Thread.sleep(4000);
     }
 
 
@@ -95,7 +96,7 @@ public class Transformation {
     public void buffer() {
         // gather a group number of items into a buffer and emit the items at once.
         Observable<Integer> observable = Observable.range(0, 10);
-        observable.buffer(3, 2)
+        observable.buffer(3)
                 .subscribe(
                         list -> System.out.println(list),
                         e -> System.out.println("Error: " + e),

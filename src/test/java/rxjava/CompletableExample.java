@@ -1,6 +1,6 @@
 package rxjava;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import io.reactivex.Completable;
 
@@ -41,6 +41,6 @@ public class CompletableExample {
             }
             return "Hello world";
         })
-                .subscribe(() -> System.out.println("completed"));
+                .subscribe(() -> System.out.println("completed")); // cannot get the returned value
     }
 }

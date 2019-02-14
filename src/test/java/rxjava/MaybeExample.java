@@ -1,6 +1,6 @@
 package rxjava;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -14,9 +14,9 @@ public class MaybeExample {
     public void hello() {
         Maybe.just("hello")
                 .subscribe(
-                        s -> System.out.println(s),
-                        e -> System.out.println(e),
-                        () -> System.out.println("completed"));
+                        s -> System.out.println(s),     // onSuccess()
+                        e -> System.out.println(e),     // onError()
+                        () -> System.out.println("completed")); //onComplete()
 
         Maybe.empty()
                 .subscribe(

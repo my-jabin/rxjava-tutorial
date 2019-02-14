@@ -1,6 +1,6 @@
 package rxjava;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
@@ -32,7 +32,7 @@ public class AsyncExample {
         Thread.sleep(2000);
     }
 
-    // observeOn tells the Observer which thread it will observer on.
+    // observeOn() switch the working thread for all remaining thread.
 
     @Test
     public void observeOn() throws InterruptedException {
