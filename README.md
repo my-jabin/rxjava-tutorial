@@ -158,7 +158,7 @@ Observable.create(emitter -> {
            });
 ```
 Memory usage graph:
-![backpressure memeory usage](./images/backpressure_problem.png)
+![backpressure memeory usage](imagesackpressure_problem.png)
 
 #### Solution
 **Backpressure** which is a form of *flow control* where the operators can express how many items are they ready to process. This allows constraining the memory usage of the dataflows in situations where there is generally no way for a step to know how many items the upstream will send to it.
